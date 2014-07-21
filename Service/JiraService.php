@@ -11,19 +11,10 @@ use CanalTP\ScrumBoardItBundle\Api\JiraCallBuilder;
  * @author Johan Rouve <johan.rouve@gmail.com>
  */
 class JiraService extends AbstractService {
-    private $sprintId;
-    private $issueTag;
-    
-    public function setOptions(array $options) {
-        parent::setOptions($options);
-        $this->setSprintId($options['sprint_id']);
-        $this->setIssueTag($options['tag']);
-    }
-    
     public function getIssues($selected = array()) {
         if (empty($selected)) {
             $template = 'Sprint = %d AND status not in (Closed)';
-            $jql = sprintf($template, $this->getSprintId());
+            $jql = sprintf($template, $this->configuration->getSprintId());
         } else {
             $jql = 'issueKey in ('.implode(',', $selected).')';
         }
@@ -32,7 +23,7 @@ class JiraService extends AbstractService {
             'jql' => $jql,
             'maxResults' => -1,
         ));
-        $api = new JiraCallBuilder($this->getOptions());
+        $api = new JiraCallBuilder($this->getConfiguration());
         $api->setApiConfiguration($config);
         return $api->call();
     }
@@ -43,30 +34,12 @@ class JiraService extends AbstractService {
             foreach ($selected as $issueId) {
                 $config->setIssueId($issueId);
                 $config->setParameters(
-                    '{"update":{"labels":[{"add":"'.$this->getIssueTag().'"}]}}'
+                    '{"update":{"labels":[{"add":"'.$this->configuration->getTag().'"}]}}'
                 );
-                $api = new JiraCallBuilder($this->getOptions());
+                $api = new JiraCallBuilder($this->getConfiguration());
                 $api->setApiConfiguration($config);
                 $api->call();
             }
         }
-    }
-    
-    public function getSprintId() {
-        return $this->sprintId;
-    }
-
-    public function setSprintId($sprintId) {
-        $this->sprintId = $sprintId;
-        return $this;
-    }
-    
-    public function getIssueTag() {
-        return $this->issueTag;
-    }
-
-    public function setIssueTag($issueTag) {
-        $this->issueTag = $issueTag;
-        return $this;
     }
 }
