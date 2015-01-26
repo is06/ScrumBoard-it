@@ -35,6 +35,10 @@
     max-width: 100%;
 }
 
+.main-nav {
+    margin: 15px 0;
+}
+
 .header {
     margin: 15px 0;
 }

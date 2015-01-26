@@ -2,6 +2,10 @@ canal_tp_postit_homepage:
     pattern:  /
     defaults: { _controller: CanalTPScrumBoardItBundle:Default:index }
 
+canal_tp_postit_settings:
+    pattern:  /settings
+    defaults: { _controller: CanalTPScrumBoardItBundle:Settings:index }
+
 canal_tp_postit_add_flag:
     pattern:  /flag/add
     defaults: { _controller: CanalTPScrumBoardItBundle:Default:addFlag }

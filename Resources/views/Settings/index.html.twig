@@ -1,0 +1,13 @@
+{% extends "CanalTPScrumBoardItBundle::base.html.twig" %}
+
+{% block content %}
+    <form method="post" action="">
+        <div class="form-group">
+            <label for="sprint_id">Sprint à afficher</label>
+            <select class="form-control" id="sprint_id" name="sprint_id">
+                <option value="1">Sprint TMA S1</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default">Enregistrer</button>
+    </form>
+{% endblock %}
