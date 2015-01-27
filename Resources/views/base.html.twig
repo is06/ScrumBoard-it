@@ -1,5 +1,14 @@
 {% extends "::base.html.twig" %}
 
+{% block body %}
+    <div class="container">
+        {% include 'CanalTPScrumBoardItBundle:Common:header.html.twig' %}
+        {% include 'CanalTPScrumBoardItBundle:Common:main_menu.html.twig' %}
+        {% block content %}{% endblock %}
+        {% include 'CanalTPScrumBoardItBundle:Common:footer.html.twig' %}
+    </div>
+{% endblock %}
+
 {% block stylesheets %}
     <!-- Bootstrap -->
     {% stylesheets

@@ -1,0 +1,13 @@
+<div class="main-nav">
+    <ul class="nav nav-pills">
+        <li{% if app.request.attributes.get('_route') == 'canal_tp_postit_homepage' %} class="active"{% endif %}>
+            <a href="{{ path('canal_tp_postit_homepage') }}">Tickets</a>
+        </li>
+        <li>
+            <a href="{{ path('canal_tp_postit_print_patron') }}" target="_blank" title="Afficher le modèle d'impression (nouvelle fenêtre)">Modèle</a>
+        </li>
+        <li{% if app.request.attributes.get('_route') == 'canal_tp_postit_settings' %} class="active"{% endif %}>
+            <a href="{{ path('canal_tp_postit_settings') }}">Paramètres</a>
+        </li>
+    </ul>
+</div>
